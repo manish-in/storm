@@ -283,6 +283,10 @@ If you have installed the source code, you can customize STORM based on your own
 
 The interface for each module is defined in `knowledge_storm/interface.py`, while their implementations are instantiated in `knowledge_storm/storm_wiki/modules/*`. These modules can be customized according to your specific requirements (e.g., generating sections in bullet point format instead of full paragraphs).
 
+#### LangGraph prototype
+
+The file `knowledge_storm/storm_graph.py` shows how the same four modules can be wired together using [LangGraph](https://python.langchain.com/docs/langgraph/).  Each stage – knowledge curation, outline generation, article generation and article polishing – becomes a node in a `StateGraph`.  The resulting `STORMGraph` class exposes a simple `.run()` method just like `STORMWikiRunner` but highlights the explicit data flow between stages.  Because the modules remain independent, the LangGraph version retains the modularity of the original `dspy` pipeline and can be maintained or extended without affecting the individual components.
+
 ### Co-STORM
 
 If you have installed the source code, you can customize Co-STORM based on your own use case
